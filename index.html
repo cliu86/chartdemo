@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+        font-family:   Arial, sans-serif
+        }
+        #chartdiv {
+            width: 100%;
+            height: 700px;
+        }
+        /* Sidebar styles */
+        .sidebar {
+            position: relative;
+            top: 0;
+            left: 0;
+    
+            height: 100%;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+        
+        /* Dropdown styles */
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        
+        .dropdown-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .dropdown select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        #panel {
+            position: fixed;
+            top: 0;
+            right: -300px; /* set initial position outside the screen */
+            width: 300px;
+            height: 100%;
+            background-color: #f1f1f1;
+            padding: 20px;
+            transition: right 0.5s ease-in-out; /* add transition effect */
+        }
+
+        #panel.show {
+            right: 0; /* move panel into the screen when it's shown */
+        }
+
+    </style>
+</head>
+
+<body>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="sidebar">
+                <div class="dropdown">
+                    <label for="dropdown1" class="dropdown-label">Dropdown 1</label>
+                    <select id="dropdown1">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="dropdown2" class="dropdown-label">Dropdown 2</label>
+                    <select id="dropdown2">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="dropdown3" class="dropdown-label">Dropdown 3</label>
+                    <select id="dropdown3">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="dropdown4" class="dropdown-label">Dropdown 4</label>
+                    <select id="dropdown4">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div id="chartdiv"></div>
+        </div> 
+    </div>
+
+    <div id="panel" onclick="closePanel()">
+        <h2>Sliding Panel</h2>
+        <p>This is some example text.</p>
+    </div>
+
+</div>
+
+<script src="js/chart.js"></script>
+<script>
+  function openPanel() {
+      document.getElementById("panel").classList.add("show");
+  }
+  function closePanel() {
+    document.getElementById("panel").classList.remove("show");
+ }
+ chart.on("click", function(event) {
+  // Check if the clicked element is a bubble
+  if (event.target && event.target.dataItem && event.target.dataItem.dataContext) {
+    // Get the data associated with the clicked bubble
+    var data = event.target.dataItem.dataContext;
+
+    // Display the data in the side panel
+    console.log(data);
+  }
+});
+
+</script>
+</body>
+</html>
